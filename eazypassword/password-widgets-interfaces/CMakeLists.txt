@@ -1,4 +1,4 @@
-set(APP_NAME password-widgets)
+set(APP_NAME password-widgets-interfaces)
 
 cmake_minimum_required(VERSION 3.5)
 
@@ -10,14 +10,11 @@ set (CMAKE_INCLUDE_CURRENT_DIR ON)
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
 set(HEADERS 
-    passwordcentralwidget.hpp
-    passwordbutton.hpp
-    passwordlineedit.hpp)
+    ezbutton.hpp
+    ezlineedit.hpp
+    ezlabel.hpp)
 
-set(SOURCES 
-        passwordcentralwidget.cpp
-        passwordbutton.cpp
-        passwordlineedit.cpp)
+set(SOURCES )
 
 add_library(${APP_NAME} SHARED ${SOURCES} ${HEADERS})
 

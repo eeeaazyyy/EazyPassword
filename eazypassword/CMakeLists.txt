@@ -2,7 +2,8 @@ set(APP_NAME eazypassword)
 
 cmake_minimum_required(VERSION 3.5)
 
-add_subdirectory(password-widgets)
+add_subdirectory(password-widgets-interfaces)
+add_subdirectory(framework)
 
 message("PLUGINS PATH " $ENV{QT_PLUGIN_PATH})
 
@@ -13,12 +14,10 @@ set(CMAKE_AUTORCC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-set (HEADERS 
-    frameworkwindow.hpp)
+set (HEADERS )
 
 set (SOURCES 
-    main.cpp
-    src/frameworkwindow.cpp)
+    main.cpp)
 
 
 
@@ -26,7 +25,7 @@ add_executable(${APP_NAME} ${SOURCES} ${HEADERS})
 
 set (INCLUDE src/)
 
-target_include_directories(${APP_NAME} PRIVATE . ./src ./password-widgets)
+target_include_directories(${APP_NAME} PRIVATE . ./src ./password-widgets-interfaces ./framework)
 
 
 
@@ -34,7 +33,8 @@ target_link_libraries(${APP_NAME} PRIVATE Qt6::Core)
 target_link_libraries(${APP_NAME} PRIVATE Qt6::Gui)
 target_link_libraries(${APP_NAME} PRIVATE Qt6::Widgets)
 
-target_link_libraries(${APP_NAME} PRIVATE password-widgets)
+target_link_libraries(${APP_NAME} PRIVATE password-widgets-interfaces)
+target_link_libraries(${APP_NAME} PRIVATE framework)
 
 add_custom_command(TARGET ${APP_NAME} POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
