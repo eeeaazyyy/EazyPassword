@@ -7,27 +7,31 @@ set(CMAKE_AUTORCC ON)
 
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Widgets Core Gui REQUIRED)
 
 set(HEADERS 
     frameworkwindow.hpp
+    controller/controllerpasswordgenerate.hpp
     widgets/framelabel.hpp
     widgets/generatepasswordbutton.hpp
     widgets/generatepasswordlineedit.hpp)
 
 set(SOURCES 
     frameworkwindow.cpp
+    controller/controllerpasswordgenerate.cpp
     widgets/src/framelabel.cpp
     widgets/src/generatepasswordlineedit.cpp
     widgets/src/generatepasswordbutton.cpp )
 
 add_library(${APP_NAME} SHARED ${SOURCES} ${HEADERS})
 
-target_include_directories(${APP_NAME} PRIVATE . ./src ../password-widgets-interfaces ./widgets)
+target_include_directories(${APP_NAME} PRIVATE . ../plugins ../ ./src ../password-widgets-interfaces ./widgets )
 
 target_link_libraries(${APP_NAME} PRIVATE Qt6::Core)
 target_link_libraries(${APP_NAME} PRIVATE Qt6::Gui)
 target_link_libraries(${APP_NAME} PRIVATE Qt6::Widgets)
+
+target_link_libraries(${APP_NAME} PRIVATE plugins)
 
 install(TARGETS ${APP_NAME}
         RUNTIME DESTINATION ${INSTALL_DIRECTORY} LIBRARY DESTINATION ${INSTALL_DIRECTORY})

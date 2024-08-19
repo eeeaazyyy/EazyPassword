@@ -1,26 +1,45 @@
-#ifndef __dasdsaeqixcghijn_121231_rtyuiolnbvcfghj
-#define __dasdsaeqixcghijn_121231_rtyuiolnbvcfghj
+#ifndef __dasdsaeqixcghijn_121231_rtyuiolnbvcfghjde1
+#define __dasdsaeqixcghijn_121231_rtyuiolnbvcfghjde1
+
+#include <QObject>
+#include <QString>
 
 namespace functional { namespace generate {
 
-class PasswordGenerated {
-public:
-    static PasswordGenerated& instance() {
-        static PasswordGenerated passwordGenerate;
-        return passwordGenerate;
-    }
-    
-private:
-    PasswordGenerated() {};
-    ~PasswordGenerated() {};
+/**
+ * PasswordGenerater
+ * 
+ */
 
-    PasswordGenerated(PasswordGenerated const&) = delete;
-    PasswordGenerated& operator= (PasswordGenerated const&) = delete;
+class PasswordGenerater : public QObject {
+Q_OBJECT
+public:
+    explicit PasswordGenerater(QObject* parent = nullptr);
+    ~PasswordGenerater();
+
+public:
+    void setContentString(const QString &regex);
+    QString contentString() const;
+
+    void setRequiredChars(const QString& requiredChars);
+    QString requiredChars() const;
+
+    void setSizePassword(int size);
+    int sizePassword() const;
+
+public slots:
+    void generatePassword();
+
+signals:
+    void passwordGenerated(const QString& password);
+
+private:
+    QString charSet_;
+    QString requiredChars_;
+    int sizePassword_;
 };
 
 }}
-
-
 #endif //__dasdsaeqixcghijn_121231_rtyuiolnbvcfghj
 
 // typedef std::vector<char> char_array;
@@ -54,3 +73,10 @@ private:
 //     std::generate_n( str.begin(), length, rand_char );
 //     return str;
 // }
+
+// const auto ch_set = charset();
+// std::default_random_engine rng(std::random_device{}()); 
+// std::uniform_int_distribution<> dist(0, ch_set.size()-1);
+// auto randchar = [ ch_set,&dist,&rng ](){return ch_set[ dist(rng) ];};
+// auto length = 14;
+// qInfo() << QString::fromStdString(random_string(length,randchar));
