@@ -15,6 +15,10 @@ ControllerPasswordGenerate::ControllerPasswordGenerate(QObject* parent)
     connect(passwordGenerater_,  &functional::generate::PasswordGenerater::passwordGenerated, this, &ControllerPasswordGenerate::setPassword);
 }
 
+ControllerPasswordGenerate::~ControllerPasswordGenerate() {
+    qInfo() << "ControllerPasswordGenerate::~ControllerPasswordGenerate()";
+}
+
 ControllerPasswordGenerate& ControllerPasswordGenerate::instance() {
     static ControllerPasswordGenerate controller;
     return controller;

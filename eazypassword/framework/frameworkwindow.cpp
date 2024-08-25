@@ -37,5 +37,5 @@ EazyPasswordMainWindow::EazyPasswordMainWindow(QWidget* parent)
 }
 
 EazyPasswordMainWindow::~EazyPasswordMainWindow() {
-
+    qInfo() << "EazyPasswordMainWindow::~EazyPasswordMainWindow()";
 }

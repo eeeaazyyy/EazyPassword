@@ -32,7 +32,7 @@ signals:
 
 private:
     explicit ControllerPasswordGenerate(QObject * parent = nullptr);
-    ~ControllerPasswordGenerate() = default;
+    ~ControllerPasswordGenerate();
 
 private:
     functional::generate::PasswordGenerater* passwordGenerater_;

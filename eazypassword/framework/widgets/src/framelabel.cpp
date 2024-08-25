@@ -14,7 +14,7 @@ FrameLabel::FrameLabel(const QString &text, QWidget *parent)
 }
 
 FrameLabel::~FrameLabel() {
-    qInfo() << labelName() << "::~" << labelName();
+    qInfo() << "FrameLabel::~FrameLabel()";
 }
 
 void FrameLabel::setLabelName(const QString &text) {

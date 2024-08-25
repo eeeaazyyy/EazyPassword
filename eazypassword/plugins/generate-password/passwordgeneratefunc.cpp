@@ -18,7 +18,7 @@ PasswordGenerater::PasswordGenerater(QObject* parent)
 }
 
 PasswordGenerater::~PasswordGenerater() {
-
+    qInfo() << "PasswordGenerater::~PasswordGenerater()";
 }
 
 void PasswordGenerater::setContentString(const QString &regex) {
