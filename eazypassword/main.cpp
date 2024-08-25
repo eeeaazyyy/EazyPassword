@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]) {
 	QApplication app(argc, argv);
-    EazyPasswordMainWindow w;
-    w.show();
+    framework::window::EazyPasswordMainWindow EazyPassword;
+    EazyPassword.show();
 	return app.exec();
 }
