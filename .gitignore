@@ -1,4 +1,5 @@
 /build
+/.vscode
 eazypassword/.vscode
 eazypassword/.vscode/settings.json
-/.vscode
+eazypassword/build/cmake_install.cmake
