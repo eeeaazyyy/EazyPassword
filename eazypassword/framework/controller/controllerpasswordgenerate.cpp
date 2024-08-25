@@ -9,9 +9,10 @@ namespace framework { namespace controller {
  * 
  */
 
-ControllerPasswordGenerate::ControllerPasswordGenerate(QObject* parent) {
-    connect(passwordGenerater_.data(),  &functional::generate::PasswordGenerater::passwordGenerated,
-            this,                       &ControllerPasswordGenerate::setPassword);
+ControllerPasswordGenerate::ControllerPasswordGenerate(QObject* parent)
+        : passwordGenerater_(new functional::generate::PasswordGenerater) {
+    passwordGenerater_->setParent(this);
+    connect(passwordGenerater_,  &functional::generate::PasswordGenerater::passwordGenerated, this, &ControllerPasswordGenerate::setPassword);
 }
 
 ControllerPasswordGenerate& ControllerPasswordGenerate::instance() {
@@ -20,23 +21,24 @@ ControllerPasswordGenerate& ControllerPasswordGenerate::instance() {
 }
 
 void ControllerPasswordGenerate::setSizePassword(int size) {
-    passwordGenerater_.get()->setSizePassword(size);
+    passwordGenerater_->setSizePassword(size);
 }
 
 void ControllerPasswordGenerate::setRequiredChars(const QString &requiredChars) {
-    passwordGenerater_.get()->setRequiredChars(requiredChars);
+    passwordGenerater_->setRequiredChars(requiredChars);
 }
 
 void ControllerPasswordGenerate::setContentString(const QString &contentString) {
-    passwordGenerater_.get()->setContentString(contentString);
+    passwordGenerater_->setContentString(contentString);
 }
 
 void ControllerPasswordGenerate::generatePassword() {
-    passwordGenerater_.get()->generatePassword();
+    passwordGenerater_->generatePassword();
 }
 
 void ControllerPasswordGenerate::setPassword(const QString& password) {
     qInfo()<<"ControllerPasswordGenerate::setPassword";
+    Q_EMIT generatedPassword(password);
 }
 
 }}

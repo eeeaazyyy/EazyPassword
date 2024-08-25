@@ -27,11 +27,11 @@ public:
     void setSizePassword(int size);
     int sizePassword() const;
 
-public slots:
-    void generatePassword();
-
 signals:
     void passwordGenerated(const QString& password);
+
+public slots:
+    void generatePassword();
 
 private:
     QString charSet_;

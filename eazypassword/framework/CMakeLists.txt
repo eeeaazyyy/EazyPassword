@@ -21,11 +21,12 @@ set(SOURCES
     controller/controllerpasswordgenerate.cpp
     widgets/src/framelabel.cpp
     widgets/src/generatepasswordlineedit.cpp
-    widgets/src/generatepasswordbutton.cpp )
+    widgets/src/generatepasswordbutton.cpp
+    ../plugins/generate-password/passwordgeneratefunc.cpp )
 
 add_library(${APP_NAME} SHARED ${SOURCES} ${HEADERS})
 
-target_include_directories(${APP_NAME} PRIVATE . ../plugins ../ ./src ../password-widgets-interfaces ./widgets )
+target_include_directories(${APP_NAME} PRIVATE . ./controller ../plugins ../ ./src ../password-widgets-interfaces ./widgets )
 
 target_link_libraries(${APP_NAME} PRIVATE Qt6::Core)
 target_link_libraries(${APP_NAME} PRIVATE Qt6::Gui)

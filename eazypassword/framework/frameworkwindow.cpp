@@ -3,6 +3,8 @@
 #include "generatepasswordbutton.hpp"
 #include "generatepasswordlineedit.hpp"
 #include "framelabel.hpp"
+#include "controllerpasswordgenerate.hpp"
+
 
 #include "frameworkwindow.hpp"
 
@@ -12,6 +14,8 @@ EazyPasswordMainWindow::EazyPasswordMainWindow(QWidget* parent)
     setMinimumSize(600, 220);
 
     centralWidget_->setParent(this);
+
+    auto const& controller = framework::controller::ControllerPasswordGenerate::instance();
 
     auto* GeneratePasswordLabel   = new framework::widgets::FrameLabel(tr("Password: "), centralWidget_);
     auto* GenerateLineEdit        = new framework::widgets::GeneratePasswordLineEdit(centralWidget_);
@@ -24,6 +28,12 @@ EazyPasswordMainWindow::EazyPasswordMainWindow(QWidget* parent)
     centralWidget_->setLayout(layout_);
     
     setCentralWidget(centralWidget_);
+
+    connect(GenerateButton, &framework::widgets::GeneratePasswordButton::clicked, 
+            &controller, &framework::controller::ControllerPasswordGenerate::generatePassword);
+
+    connect(&controller, &framework::controller::ControllerPasswordGenerate::generatedPassword, 
+            GenerateLineEdit, &QLineEdit::setText);
 }
 
 EazyPasswordMainWindow::~EazyPasswordMainWindow() {

@@ -35,7 +35,7 @@ private:
     ~ControllerPasswordGenerate() = default;
 
 private:
-    QSharedPointer<functional::generate::PasswordGenerater> passwordGenerater_;
+    functional::generate::PasswordGenerater* passwordGenerater_;
 };
 
 }}

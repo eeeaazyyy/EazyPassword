@@ -13,7 +13,7 @@ namespace functional { namespace generate {
  */
 PasswordGenerater::PasswordGenerater(QObject* parent)
         : QObject(parent), 
-          charSet_("QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"),
+          charSet_("QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890!%$#"),
           sizePassword_(14) {
 }
 
@@ -48,10 +48,10 @@ int PasswordGenerater::sizePassword() const {
 void PasswordGenerater::generatePassword() {
     QString password = "";
 
-    for(int i=0; i < sizePassword_; ++i)
+    for(int i = 0; i < sizePassword_; ++i)
     {
-        int index = QRandomGenerator::global()->bounded(0, charSet_.length());;
-        QChar nextChar = password.at(index);
+        int index = QRandomGenerator::global()->bounded(0, charSet_.length());
+        QChar nextChar = charSet_.at(index); // Используйте charSet_, а не password
         password.append(nextChar);
     }
     
