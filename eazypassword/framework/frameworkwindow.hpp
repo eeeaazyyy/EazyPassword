@@ -17,7 +17,6 @@ public:
 
 private:
     QWidget* centralWidget_;
-    QGridLayout* layout_;
 };
 
 }}
